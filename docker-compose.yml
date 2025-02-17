@@ -1,0 +1,21 @@
+services:
+  postgres:
+    image: postgres:latest
+    container_name: postgres_cria_chave
+    ports:
+      - "5434:5432"
+    environment:
+      POSTGRES_DB: "CriaChave"
+      POSTGRES_USER: "rsf"
+      POSTGRES_PASSWORD: "tks32ney091273hoadasj902091ma021"
+    volumes:
+      - ./postgres_data:/var/lib/postgresql/data
+    networks:
+      - app-network
+    restart: always
+
+volumes:
+  postgres_data:
+networks:
+  app-network:
+    driver: bridge
