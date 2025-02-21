@@ -1,3 +1,5 @@
+from datetime import datetime
+from typing import Optional
 from pydantic import BaseModel, Field, field_validator, ValidationError
 
 class UserBase(BaseModel):
@@ -36,5 +38,21 @@ class UserBase(BaseModel):
                 "codigo": "khhum",
                 "senha": "Password@123",
                 "funcao": "teste"
+            }
+        }
+
+class UserResponse(BaseModel):
+    id: int = Field(..., example=1)
+    login: str = Field(..., example="john_doe")
+    created_at: datetime = Field(..., example="2023-10-24T12:34:56")
+    updated_at: Optional[datetime] = Field(None, example="2023-10-24T12:35:56") 
+    
+    class Config:
+        json_schema_extra = {
+            "example": {
+                "id": 1,
+                "login": "john_doe",
+                "created_at": "2023-10-24T12:34:56",
+                "updated_at": "2023-10-24T12:35:56"
             }
         }
